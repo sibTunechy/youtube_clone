@@ -8,11 +8,15 @@ import { fetchFromAPI } from '../utils/fetchFromAPI';
 
 const VideoFeed = () => {
 
-  const [videoFeed, setVideoFeed] = useState(null)
+  const [videoFeed, setVideoFeed] = useState(null);
+  const [videos, setVideos] = useState(null);
   const {id} = useParams();
 
   useEffect(() => {
     fetchFromAPI(`videos?part=snippet,statictics&id=${id}`).then((data) => setVideoFeed(data.items[0]));
+
+    fetchFromAPI(`search?part=snippet&relatedToVideoId=${id}&type=video`).then((data) => setVideos(data.items));
+
   }, [id]);
 
   if (!videoFeed?.snippet) return 'Loading...';
@@ -37,15 +41,23 @@ const VideoFeed = () => {
                   <CheckCircle sx={{fontSize: '12px', color: 'gray', ml: '5px'}} />
                 </Typography>
               </Link>
-              <Stack>
-                <Typography variant='' >
-
+              <Stack direction='row' gap='20px' alignItems='center' >
+                <Typography variant='body1' sx={{ opacity: 0.7 }} >
+                  {parseInt(viewCount).toLocaleString()} views
+                </Typography>
+                <Typography>
+                  {parseInt(likeCount).toLocaleString()} likes
                 </Typography>
               </Stack>
             </Stack>
           </Box>
         </Box>
       </Stack> 
+
+      <Box px={2} py={{md: 1}} >
+
+       </Box>
+
     </Box>
   )
 }
