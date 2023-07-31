@@ -7,11 +7,24 @@ import { demoThumbnailUrl, demoVideoUrl, demoVideoTitle, demoChannelUrl, demoCha
 
 const VideoCard = ({ video: { id: { videoId }, snippet } }) => (
   <>
+    
+    <div className='w-100 h-120'>
+      <Link to={videoId ? `/video/${videoId}` : demoVideoUrl}>
+        <div  >
+          <img 
+          src={snippet?.thumbnails?.high?.url}
+          alt={snippet?.title}
+           />
+        </div>
+      </Link>
+    </div>
 
-     <div className='grid grid-cols-4 gap-4 my-4 shadow-none rounded-0'  >
+
+
+     {/* <div className=''  >
       <Link to={videoId ? `/video/${videoId}` : `/video/cV2gBU6hKfY` }>
-        <div className='w-[80] sm:w-full mx-auto flex flex-col gap-2 '>
-        <img src={snippet?.thumbnails?.high?.url || demoThumbnailUrl} alt={snippet?.title} className='h-180 xs:w-[300px] sm:w-[358px] md:w-[400px]' />       
+        <div className=''>
+        <img src={snippet?.thumbnails?.high?.url || demoThumbnailUrl} alt={snippet?.title} className='h-180 w-358' />       
         </div> 
       </Link>
       <div className='bg-black h-106' >
@@ -27,7 +40,15 @@ const VideoCard = ({ video: { id: { videoId }, snippet } }) => (
         </Typography>
       </Link>
       </div>
-    </div> 
+    </div>  */}
+
+
+{/* 
+    <div className='grid grid-cols-4 gap-4 my-4 shadow-none rounded-0'  >
+      <Link to={videoId ? `/video/${videoId}` : `/video/cV2gBU6hKfY` }>
+        <div className='w-[80] sm:w-full mx-auto flex flex-col '>
+        <img src={snippet?.thumbnails?.high?.url || demoThumbnailUrl} alt={snippet?.title} className='h-180 xs:w-[100px] sm:w-[358px] md:w-[400px]' />       
+        </div>  */}
 
   {/* <Card sx={{ width: { xs: '300px', sm: '358px', md: '400px'}, boxShadow: "none", borderRadius: 0 }}>
     <Link to={videoId ? `/video/${videoId}` : `/video/cV2gBU6hKfY` }>
